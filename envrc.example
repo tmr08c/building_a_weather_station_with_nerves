@@ -1,1 +1,3 @@
 export MIX_TARGET=rpi0
+export WIFI_SSID="wifi network name"
+export WIFI_PSK="wifi password"
