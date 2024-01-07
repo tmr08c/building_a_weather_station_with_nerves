@@ -67,5 +67,5 @@ defmodule SensorHub.Sensor do
     end
   end
 
-  def convert_fn(VEML6030), do: &Enum.zip(fields(VEML6030), &1)
+  def convert_fn(VEML6030), do: &Enum.zip(fields(VEML6030), List.wrap(&1))
 end
