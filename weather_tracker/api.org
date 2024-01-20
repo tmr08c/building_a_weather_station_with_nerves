@@ -1,0 +1,63 @@
+#+title: API Docs
+
+* /weather-conditions
+** Error
+
+#+begin_src restclient
+POST http://localhost:4000/api/weather-conditions
+Content-Type: application/json
+
+{}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "message": "Poorly formatted payload"
+}
+// POST http://localhost:4000/api/weather-conditions
+// HTTP/1.1 422 Unprocessable Entity
+// cache-control: max-age=0, private, must-revalidate
+// content-length: 38
+// content-type: application/json; charset=utf-8
+// date: Sat, 20 Jan 2024 23:50:27 GMT
+// server: Cowboy
+// x-request-id: F6wzLSRiVe5b4iUAAADI
+// Request duration: 0.081114s
+#+END_SRC
+** Success
+
+#+begin_src restclient
+POST http://localhost:4000/api/weather-conditions
+Content-Type: application/json
+
+{
+    "altitude_m": 1.23,
+    "pressure_pa": 1.23,
+    "temperature_c": 1.23,
+    "co2_eq_ppm": 1.23,
+    "tvoc_ppb": 1.23,
+    "light_lumens": 1.23
+}
+#+end_src
+
+#+RESULTS:
+#+BEGIN_SRC js
+{
+  "altitude_m": "1.23",
+  "pressure_pa": "1.23",
+  "temperature_c": "1.23",
+  "co2_eq_ppm": "1.23",
+  "tvoc_ppb": "1.23",
+  "light_lumens": "1.23"
+}
+// POST http://localhost:4000/api/weather-conditions
+// HTTP/1.1 201 Created
+// cache-control: max-age=0, private, must-revalidate
+// content-length: 125
+// content-type: application/json; charset=utf-8
+// date: Sat, 20 Jan 2024 23:52:48 GMT
+// server: Cowboy
+// x-request-id: F6wzThgyeaeipOkAAAAG
+// Request duration: 0.071516s
+#+END_SRC
