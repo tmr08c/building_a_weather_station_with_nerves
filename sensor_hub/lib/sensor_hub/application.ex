@@ -5,6 +5,8 @@ defmodule SensorHub.Application do
 
   use Application
 
+  alias SensorHub.Sensor
+
   @impl true
   def start(_type, _args) do
     # See https://hexdocs.pm/elixir/Supervisor.html
@@ -35,8 +37,17 @@ defmodule SensorHub.Application do
     [
       {SGP40, [name: SGP40]},
       {BMP280, [i2c_address: 0x77, name: BMP280]},
-      {VEML6030, %{}}
+      {VEML6030, %{}},
+      {Publisher, %{sensors: sensors(), weather_tracker_url: weather_tracker_url()}}
     ]
+  end
+
+  defp sensors() do
+    Enum.map([SGP40, BMP280, VEML6030], &Sensor.new/1)
+  end
+
+  defp weather_tracker_url() do
+    Application.fetch_env!(:sensor_hub, :weather_tracker_url)
   end
 
   def target() do
